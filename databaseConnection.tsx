@@ -1,48 +1,26 @@
-import mysql from "mysql2";
-export const connection = mysql.createConnection({
+import mysql from "mysql2/promise";
+export const connection = await mysql.createConnection({
   host: "localhost",
   user: "root",
+  port: 3307,
   password: "example",
-  database: "blogs",
+  database: "posts",
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error("Connection failed to MySQL: ", err);
-    return;
+interface ExecuteQueryTypes {
+  query: string;
+  values?: any[];
+}
+
+export default async function executeQuery({
+  query,
+  values,
+}: ExecuteQueryTypes) {
+  try {
+    const results = await connection.execute(query, values);
+    await connection.end();
+    return results;
+  } catch (error) {
+    return { error };
   }
-
-  console.log("Successful connection to MySQL server");
-});
-
-// connection.query("SELECT * FROM posts;", (err, results) => {
-//   if (err) {
-//     console.error("Connection failed to MySQL: ", err);
-//     return;
-//   }
-//   console.log(results);
-//   connection.end((err) => {
-//     if (err) {
-//       console.error("Error closing connection: ", err);
-//       return;
-//     }
-//     console.log("connection closed");
-//   });
-// });
-
-// export async function getElements() {
-//   connection.query("SELECT * FROM posts;", (err, results) => {
-//     if (err) {
-//       console.error("Connection failed to MySQL: ", err);
-//       return;
-//     }
-//     console.log(results);
-//     connection.end((err) => {
-//       if (err) {
-//         console.error("Error closing connection: ", err);
-//         return;
-//       }
-//       console.log("connection closed");
-//     });
-//   });
-// }
+}
