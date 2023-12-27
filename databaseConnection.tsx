@@ -17,9 +17,9 @@ export default async function executeQuery({
   values,
 }: ExecuteQueryTypes) {
   try {
-    const results = await connection.execute(query, values);
+    const [rows, fields] = await connection.execute(query, values);
     await connection.end();
-    return results;
+    return rows;
   } catch (error) {
     return { error };
   }
