@@ -25,6 +25,7 @@ connection.connect((err) => {
   //     connection.end();
   //     return;
   //   }
+  // });
 
   // Switch to the created database
   connection.changeUser({ database: DB_NAME }, (changeUserError) => {
@@ -51,7 +52,7 @@ connection.connect((err) => {
     // Define the SQL query to create a table if not exists
     const createPostsTableQuery = `
         CREATE TABLE IF NOT EXISTS posts (
-          post_id INT AUTO_INCREMENT PRIMARY KEY,
+          id INT AUTO_INCREMENT PRIMARY KEY,
           image_url VARCHAR(255) NOT NULL,
           title VARCHAR(255) NOT NULL,
           context TEXT NOT NULL
@@ -62,11 +63,11 @@ connection.connect((err) => {
 
     const createCommentsTableQuery = `
         CREATE TABLE IF NOT EXISTS comments (
-            comment_id INT AUTO_INCREMENT PRIMARY KEY,
+            id INT AUTO_INCREMENT PRIMARY KEY,
             author_name VARCHAR(255) NOT NULL,
             comment_context TEXT NOT NULL,
             post_id INT NOT NULL,
-            FOREIGN KEY (post_id) REFERENCES posts(post_id)
+            FOREIGN KEY (post_id) REFERENCES posts(id)
         )
         `;
 
@@ -74,7 +75,7 @@ connection.connect((err) => {
 
     const createTagsTableQuery = `
         CREATE TABLE IF NOT EXISTS tags (
-            tag_id INT AUTO_INCREMENT PRIMARY KEY,
+            id INT AUTO_INCREMENT PRIMARY KEY,
             tags_name VARCHAR(255) NOT NULL
         )
         `;
@@ -83,11 +84,12 @@ connection.connect((err) => {
 
     const createPostTagsTableQuery = `
         CREATE TABLE IF NOT EXISTS post_tags (
+            id INT AUTO_INCREMENT PRIMARY KEY,
             post_id INT,
             tag_id INT,
-            PRIMARY KEY (post_id, tag_id),
-            FOREIGN KEY (post_id) REFERENCES posts(post_id),
-            FOREIGN KEY (tag_id) REFERENCES tags(tag_id)
+            PRIMARY KEY (id),
+            FOREIGN KEY (post_id) REFERENCES posts(id),
+            FOREIGN KEY (tag_id) REFERENCES tags(id)
         )
         `;
 
@@ -95,45 +97,12 @@ connection.connect((err) => {
 
     const createUsersTableQuery = `
         CREATE TABLE IF NOT EXISTS users (
-            user_id INT AUTO_INCREMENT PRIMARY KEY,
+            id INT AUTO_INCREMENT PRIMARY KEY,
             login_email VARCHAR(255),
             password VARCHAR(255)
         )
         `;
 
     createTable("users", createUsersTableQuery);
-
-    // Execute the query to create the table
-    // connection.query(
-    //   createPostsTableQuery,
-    //   (createTableError, createTableResults) => {
-    //     if (createTableError) {
-    //       console.error("Error creating table:", createTableError);
-    //       connection.end();
-    //       return;
-    //     }
-    //
-    //     console.log('Table "posts" created or already exists');
-
-    // Define the SQL query to insert data into the table
-    // const insertDataQuery = `
-    //   INSERT INTO movies (name, email) VALUES
-    //     ('John Doe', 'john@example.com'),
-    //     ('Jane Doe', 'jane@example.com'),
-    //     ('Bob Smith', 'bob@example.com')
-    // `;
-    //
-    // // Execute the query to insert data
-    // connection.query(insertDataQuery, (insertDataError, insertDataResults) => {
-    //   if (insertDataError) {
-    //     console.error('Error inserting data:', insertDataError);
-    //   } else {
-    //     console.log('Data inserted or already exists');
-    //   }
-    //
-    //   // Close the connection
-    //   connection.end();
-    // });
   });
 });
-// });

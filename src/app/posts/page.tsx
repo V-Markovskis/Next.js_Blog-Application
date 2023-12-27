@@ -8,11 +8,17 @@ async function getPosts() {
   return data.posts;
 }
 
-type Posts = {
-  post_id: number;
+export type Tag = {
+  id: number;
+  tags_name: string;
+};
+
+export type Posts = {
+  id: number;
   image_url: string;
   title: string;
   context: string;
+  tags: Tag[];
 };
 
 export default async function TicketList() {
@@ -22,8 +28,13 @@ export default async function TicketList() {
   return (
     <>
       {posts.map((post: Posts) => (
-        <div key={post.post_id} className="container">
+        <div key={post.id} className="container">
           <h3>{post.title}</h3>
+          <div>
+            {post.tags.map((tag: Tag) => (
+              <div key={tag.id}>{tag.tags_name}</div>
+            ))}
+          </div>
         </div>
       ))}
       {posts.length === 0 && <p className="text-center">No posts created!</p>}

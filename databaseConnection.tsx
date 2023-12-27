@@ -1,11 +1,12 @@
 import mysql from "mysql2/promise";
-export const connection = await mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  port: 3307,
-  password: "example",
-  database: "posts",
-});
+export const getConnection = async () =>
+  await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    port: 3307,
+    password: "example",
+    database: "posts",
+  });
 
 interface ExecuteQueryTypes {
   query: string;
@@ -17,6 +18,7 @@ export default async function executeQuery({
   values,
 }: ExecuteQueryTypes) {
   try {
+    const connection = await getConnection();
     const [rows, fields] = await connection.execute(query, values);
     await connection.end();
     return rows;
