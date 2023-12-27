@@ -1,3 +1,6 @@
+import Link from "next/link";
+import styles from "./page.module.css";
+
 async function getPosts() {
   const res = await fetch("http://localhost:3000/api/posts", {
     next: {
@@ -10,7 +13,7 @@ async function getPosts() {
 
 export type Tag = {
   id: number;
-  tags_name: string;
+  tag_name: string;
 };
 
 export type Posts = {
@@ -27,17 +30,25 @@ export default async function TicketList() {
 
   return (
     <>
-      {posts.map((post: Posts) => (
-        <div key={post.id} className="container">
-          <h3>{post.title}</h3>
-          <div>
-            {post.tags.map((tag: Tag) => (
-              <div key={tag.id}>{tag.tags_name}</div>
-            ))}
+      <div>
+        {posts.map((post: Posts) => (
+          <div key={post.id} className={styles.innerContainer}>
+            <h3>{post.title}</h3>
+            <div>
+              {post.tags.map((tag: Tag) => (
+                <div key={tag.id}>{tag.tag_name}</div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       {posts.length === 0 && <p className="text-center">No posts created!</p>}
+      <br />
+      <div>
+        <Link href="/">
+          <button className="btn btn-success">Back to home page</button>
+        </Link>
+      </div>
     </>
   );
 }

@@ -25,7 +25,7 @@ export default function Home() {
 
       <div>
         <Link href="/posts">
-          <button>View Posts</button>
+          <button className="btn btn-success">View Posts</button>
         </Link>
       </div>
     </main>

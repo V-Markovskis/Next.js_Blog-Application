@@ -1,24 +1,161 @@
-# INSERT INTO posts (image_url, title, context) VALUES (
-#                           'testUlr1','title1','content1'
-#                          ),
-#                          (
-#                              'testUlr2','title12','content2'
-#                          ),
-#                         (
-#                           'testUlr3','title3','content3'
-#                         );
+# INSERT INTO posts (image_url, title, content)
+# VALUES ('https://www.familyhandyman.com/wp-content/uploads/2022/10/GettyImages-139539218-scaled-e1666118208861.jpg',
+#         'Why are blueprints blue?',
+#         'If you have a blueprint for success, you''re not alone. At least when it comes to the "blueprint" part. The word "blueprint" has become part of a global lexicon used to symbolize a plan, strategy or framework. But what is a blueprint, really?
+#         At its most basic, a blueprint is a reproduction of an image that already exists. Engineers or architects use these large-format prints to illustrate project plans using white lines and text on a backdrop of blue. And it''s not just because they happen to really, really like blue.
+#         A blueprint''s signature hue is tied to a chemical process. In 1842, an English photographer, chemist and astronomer named John Herschel discovered that combining ferric ammonium citrate and potassium ferricyanide created a chemical reaction and a compound called blue ferric ferrocyanide (or Prussian blue). This photosensitive solution could be used to reproduce documents in a process similar to developing a photograph from a negative.
+#         The process, called cyanotype, was adopted by early photographers and led to the first book illustrated by photography and then became the darling of architects and engineers. Here''s how it works: First, you create a drawing and transfer it to vellum paper or tracing cloth, both of which are so thin they are practically see-through. Then, you saturate a piece of regular paper with an ammonium potassium mixture and let it dry. Place the drawing atop the paper coated in the chemical solution, expose the papers to a bright light and wait for a chemical reaction to take place. Within a matter of minutes, the chemical-coated paper will be transformed into blue ferric ferrocyanide -- with one important exception.
+#         Wherever the light can''t shine through the top paper (because of the lines from the original drawing), the blueprinting paper remains white. After rinsing the paper in cold water to halt the chemical reaction and allowing the paper to dry in the dark, you''re left with a nearly identical duplicate of the original drawing. The reproduction is a negative image that appears white against a background turned a specific shade of indigo by the reaction of the chemical compound. Although the process requires several steps, it became a big hit with the pre-computer crowd of the 19th and 20th centuries; it was still faster and cheaper than creating large-scale drawings by hand. The story of the creation of Prussian blue has all the elements of a dark fairy tale. In 1704, an alchemist and a dye-maker shared a laboratory in Berlin, Germany. The former, Johann Konrad Dippel, sought to create a universal remedy -- one that treated everything from animal mange to human epilepsy -- by boiling hooves, horns and leather into a smelly elixir. The latter, a fellow named Diesbach, made batches of vibrant dyes. One day, as Diesbach simmered insects, alum, iron and sulfate to create a deep red, he added some potash borrowed from the alchemist''s elixir and added it to his viscous mixture. This horrible brew created a blue as deep as the night sky.
+#         After retracing the steps in the process, Dippel realized the potash contained ox blood that when mixed with iron sulfate caused a chemical reaction and turned a brilliant shade of blue. Unlike other blue dyes that were difficult to make and easily faded, this blue remained vivid.
+#         Initially, Dippel called the color Berlin blue as a nod to his city of residence. Later, it was called Prussian blue because it was used to dye uniform fabric for the Prussian army. The color became both a symbol of aggression and a term of endearment because of the army''s fierce battles and serendipitous interventions in conflicts like the Battle of Waterloo.
+#         By the late 1800s, Prussian blue had found favor with Impressionist artists and Japanese printmakers. As the 1900s wore on, it became the hue of newspaper ink, typewriter ribbon and eye shadow. Scientists even discovered Prussian blue works as an antidote to heavy metal poisoning by acting as a magnet to attract and evacuate heavy metals from the bloodstream [source: Pendle].
+#         Eventually, Prussian blue became as important for its practicality as its novelty, but not while John Herschel was alive to see it. It wasn''t until five years of his death that blueprints were recognized as an inexpensive and simple way to reproduce architectural drawings'
+#        ),
 #
-INSERT INTO tags (tags_name)
-VALUES ('Culture'),
-       ('Animal'),
-       ('Auto'),
-       ('Science');
+#        ('https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2dldHR5aW1hZ2VzLTIwMDE1OTQ2My0wMDEuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9LCJ0b0Zvcm1hdCI6ImF2aWYifX0=',
+#         'Where Wildfire Prevention Impacts People and Climate Most',
+#         'The U.S. government is investing over $7 billion in the coming years to try to manage the nation’s escalating wildfire crisis. That includes a commitment to treat at least 60 million acres (242,811 square kilometers) in the next 10 years by expanding forest-thinning efforts and controlled burns.
+#         While that sounds like a lot – 60 million acres is about the size of Wyoming – it’s nowhere close to enough to treat every acre that needs it.
+#         So, where can taxpayers get the biggest bang for the buck?
+#         I’m a fire ecologist in Montana. In a new study, my colleagues and I mapped out where forest treatments can do the most to simultaneously protect communities – by preventing wildfires from turning into disasters – and also protect the forests and the climate we rely on, by keeping carbon out of the atmosphere and stored in healthy soils and trees.
+#         Forests and fires have always been intertwined in the West. Fires in dry conifer forests like ponderosa pine historically occurred frequently, clearing out brush and small trees in the understory. As a result, fires had less fuel and tended to stay on the ground, doing less damage to the larger, older trees.
+#         That changed after European colonization of North America ushered in a legacy of fire suppression that wouldn’t be questioned until the 1960s. In the absence of fire, dry conifer forests accumulated excess fuel that now allows wildfires to climb into the canopy.
+#         In addition to excess fuels, all forest types are experiencing hotter and drier wildfire seasons due to climate change. And the expanding number of people living in and near forests, and their roads and power lines, increases the risk of wildfire ignitions. Collectively, it’s not surprising that more area is burning at high severity in the West.
+#         In response, the U.S. is facing increasing pressure to protect communities from high-severity wildfire, while also reducing the country’s impact on climate change – including from carbon released by wildfires.
+#         To find the locations with greatest potential payoff for forest treatments, we started by identifying areas where forest carbon is more likely to be lost to wildfires compared to other locations.
+#         In each area, we considered the likelihood of wildfire and calculated how much forest carbon might be lost through smoke emissions and decomposition. Additionally, we evaluated whether the conditions in burned areas would be too stressful for trees to regenerate over time. When forests regrow, they absorb carbon dioxide from the atmosphere and lock it away in their wood, eventually making up for the carbon lost in the fire.
+#         In particular, we found that forests in California, New Mexico and Arizona were more likely to lose a large portion of their carbon in a wildfire and also have a tough time regenerating because of stressful conditions.
+#         When we compared those areas to previously published maps detailing high wildfire risk to communities, we found several hot spots for simultaneously reducing wildfire risk to communities and stabilizing stored carbon.
+#         Forests surrounding Flagstaff, Arizona; Placerville, California; Colorado Springs, Colorado; Hamilton, Montana; Taos, New Mexico; Medford, Oregon, and Wenatchee, Washington, are among locations with good opportunities for likely achieving both goals.
+#         Forest thinning is like weeding a garden: It removes brush and small trees in dry conifer forests to leave behind space for the larger, older trees to continue growing.
+#         Repeatedly applying controlled burns maintains that openness and reduces fuels in the understory. Consequently, when a wildfire occurs in a thinned and burned area, flames are more likely to remain on the ground and out of the canopy.
+#         Although forest thinning and controlled burning remove carbon in the short term, living trees are more likely to survive a subsequent wildfire. In the long term, that’s a good outcome for carbon and climate. Living trees continue to absorb and store carbon from the atmosphere, as well as provide critical seeds and shade for seedlings to regenerate, grow and recover the carbon lost to fires.
+#         Of course, forest thinning and controlled burning are not a silver bullet. Using the National Fire Protection Agency’s Firewise program’s advice and recommended materials will help people make their properties less vulnerable to wildfires. Allowing wildfires to burn under safe conditions can reduce future wildfire severity. And the world needs to rapidly transition away from fossil fuels to curb climate change impacts that increase the risk of wildfires becoming community disasters.'
+#        ),
+#
+#        ('https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2hvbGx5d29vZC1zaWduLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6ODI4fSwidG9Gb3JtYXQiOiJhdmlmIn19',
+#         'Stardust and Scandal: The Hollywood Sign Turns 100',
+#         'California''s most famous sign turns 100 years old this year, and while it''s a familiar sight to people the world over, there''s a lot you might not know about the Hollywood sign.
+#         Perched at the top of Mount Lee, in Griffith Park, above the sprawl of Los Angeles, the Hollywood sign appears in the background of countless tourist photos. "It''s hard to think about L.A. and not picture the sign," says Casey Schreiner, author of the guidebook "Discovering Griffith Park: A Local''s Guide." "I''d be hard-pressed to think of a more iconic landmark."
+#         It''s beloved, Schreiner adds, by tourists and locals alike. "Angelenos think of it the way Parisians think of the Eiffel tower," he says. "People are drawn to it because it symbolizes a dream and a kind of ambition that only exists in LA."
+#         But while it now has iconic status that''s helped it last a century, the Hollywood sign had much more humble beginnings. When it was first erected in 1923, it was essentially a billboard: It was an advertisement for the Hollywoodland neighborhood (and it had those four extra letters at the end, too!). It was also covered in lightbulbs — roughly 4,000 of them — that blinked all night. It cost $21,000 to build, and was designed to last 18 months.
+#         Instead, it stood for decades. "There was a guy whose job it was to screw in the lightbulbs when they went out," says Schreiner. "He lived in a shack below the sign." By the late 1940s, the sign had fallen into disrepair, and the Hollywoodland real estate development had folded. Some said the sign should be bulldozed, but the Hollywood Chamber of Commerce stepped in and had it rebuilt — this time, without the "land."
+#         In the 1970s, the sign needed help again. "It was an eyesore," says Schreiner. Hugh Hefner, the founder of Playboy Magazine, stepped in to raise money. He threw a 1978 gala at his famous mansion, and auctioned each letter of the sign to a different celebrity or corporate sponsor, including actors and musicians like Gene Autry and Andy Williams, rock star Alice Cooper and Warner Bros. Records. The price tag of just over $27,000 a letter was enough to fund a total restoration.
+#         The old sign was torn down, and three months later a new one went up. Unlike the wood and sheet metal construction of the original, the new version was made of steel, mounted to steel columns and sunk into a sturdy concrete foundation.
+#         Since the new sign was unveiled, it''s been repeatedly power washed and repainted, to keep it in good condition. The iconic view of the sign was threatened once more, in 2010. For years, everyone had assumed the land the sign was on was a part of Griffith Park, the huge public park that also houses the Los Angeles Zoo, the Griffith Observatory and the Autry Museum of the American West. When a developer put a big parcel just to the left of the sign''s "H" on the market, the city scrambled to pull together money to buy it.
+#         "It turned out it was private land, tied to Howard Hughes," says Schreiner. "He wanted to build a mansion up there for some starlet, and she basically said if I go up there, I''m never coming down alive."
+#         The starlet was Ginger Rogers; Hughes, the fabulously rich business man, bought the parcel of land when the pair were engaged and planned to build a massive castle with sweeping views of the city. He even went to court with the city over the right to build an access road (and won!). Before anything was built, the relationship dissolved, and the parcel became a forgotten piece of the Howard Hughes estate.
+#         When it went up for sale in 2010, the city of Los Angeles couldn''t quite get the money together. Enter Hugh Hefner, again.
+#         "He helped again, and gave the city some of the money it needed to buy the land and add it to Griffith Park," Schreiner says. In fact, he adds, the sign''s surroundings are part of what makes the sign so special. "Griffith Park is one of the largest urban wilderness parks in the country," he says. "It''s four times bigger than Golden Gate Park in San Francisco. It''s right in the middle of the city. From there, you can see Universal Studios and Warner Bros. Studios. You''re near a lot of stuff. And there is a huge amount of wildlife and native plants."
+#         In honor of the sign''s centennial, the Hollywood Sign Trust has announced plans to build a visitor''s center. For now, there are a number of ways to experience the landmark, including hiking up Mount Lee. Keep in mind that the trail ends behind the sign, so while it''s a great vista of L.A., it''s not a good view of the sign itself.
+#         "You can drive to a viewpoint, but it''s in a residential neighborhood, the roads were built in the ''20s, and they''re narrow," says Schreiner. "But there are dozens of places to see the sign. In my book I list 14 ways, including one where you come out of the subway into a shopping plaza and get a nice view.
+#         Schreiner''s favorite views are from the Lake Hollywood Reservoir ("You get a view of the sign with water in front of it, which is unique," he says), and from the West Observatory Trail. However you see the Hollywood sign, Schreiner says, it''s well worth a visit.
+#         "It''s big. It''s bigger than it looks," he says. "I think most people, when they come to Hollywood, are a bit disappointed at how small things look in real life. The sign is the opposite; it over-delivers."'
+#        ),
+#
+#        ('https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2dldHR5aW1hZ2VzLTExMjcwNjU4Mi5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH0sInRvRm9ybWF0IjoiYXZpZiJ9fQ==',
+#         'Oldest Countries in the World',
+#         'San Marino
+#         This tiny nation on the Italian peninsula holds the Guinness World Record for the oldest existing republic in the world. With a total area of just 24 square miles (62.2 square kilometers), San Marino is one of the smallest countries in the world but has managed to hang onto its independence for centuries. (Vatican City is the smallest country in the world, at just 121 acres or 49 hectares.)
+#         According to tradition, San Marino was founded on September 3, 301 C.E., by St. Marinus. Although historians dispute that founding date, it''s true that San Marino has functioned as a self-governing republic since at least the 13th century CE.
+#         The historic city center around Monte Titano is a UNESCO World Heritage site. According to UNESCO, San Marino is the "only surviving Italian city-state, representing an important stage in the development of democratic models in Europe and worldwide."
+#         When Napoleon invaded Italy in his quest to build a world empire, he respected the small country''s self-sovereignty, and when Italy unified in 1861, San Marino remained independent through formalized treaties.
+#         Japan
+#         Like San Marino, Japan has a semi-mythical founding date. The legendary Emperor Jimmu, a descendant of the sun goddess Amaterasu, is believed to have founded Japan''s imperial dynasty in 660 B.C.E,. making Japan the oldest continuous hereditary monarchy in the world.
+#         Historians place the nation''s founding somewhat later, around the mid-4th century C.E., when the archipelago''s states merged into one.
+#         According to Britannica, "The questions of how the unification of Japan was first achieved and of how the Yamato court, with the tennō (''emperor of heaven'') at its centre, came into being in central Honshu have inspired many hypotheses, none of which has so far proved entirely convincing."
+#         While Japan''s unification remains murky, historians do agree that Japan has been occupied by humans since Paleolithic times. The archipelago''s first inhabitants immigrated from the Korean peninsula via land connections over what is now the Korea Strait.
+#         Mexico
+#         Present-day Mexico''s history can be traced back to 1200 B.C.E. with the founding of the Olmec civilization. The Olmecs lived along the Gulf of Mexico and southern Mexico and are famous for the huge basalt heads believed to represent Olmec rulers.
+#         The Olmecs likely established the first form of writing in the Americas and participated in extensive trade networks. Their influence can be seen in the Mayan and Aztec cultures that later dominated the area.
+#         '),
+#
+#        ('https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2hlcm8tMjAwNDE2Nzg0LTAwMS5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH0sInRvRm9ybWF0IjoiYXZpZiJ9fQ==',
+#         'Best Animals to Keep as Pets',
+#         'Guinea Pig
+#         The guinea pig (Cavia porcellus) is a small rodent domesticated in Peru 3,000 years ago. Like rabbits, guinea pigs were originally domesticated as a food source and became popular as pets in the 19th century.
+#         The American Cavy Breeders Association recognizes 13 breeds, from the short-coat Abyssinian to the curly-haired Texel.
+#         Guinea pigs weigh 1 to 3 pounds (0.5 to 1.4 kg) and are 8 to 16 inches (20.3 to 40.6 cm) long. Despite their small size, guinea pigs are somewhat messy pets, so you must clean their bedding daily. Guinea pigs are a long-term commitment: They typically live to 7 or 8 years of age.
+#         Before you go out and buy a guinea pig, know that these social animals do best in pairs. According to the Swiss Animal Protection Ordinance, guinea pigs are one of several species that “must be kept in groups of at least two animals.”
+#         The other pets on the list of particularly social animals? Canaries, chinchillas, cockatoos, degus, estrildid finches, gerbils, Japanese quails, lovebirds, macaws, mice, parakeets, parrots and rats.
+#         The animal shelter or pet store where you find your guinea pigs should be able to tell you which two (or three) individuals get along.
+#         Betta Fish
+#         A fish is a great low-maintenance pet. Aside from daily feedings and tank cleaning, they don''t need much hands-on care. Betta fish (Betta splendens), with their long, colorful fins, have the look of an exotic pet but are available at most pet stores and eat pellet food.
+#         One of the most enduring betta fish myths is that they must live alone. (They''re also known as Siamese fighting fish.) To clarify, putting two male betta fish together is not a good idea. You can, however, pair betta fish with other aquatic animals or try pairing two female betta fish.
+#         Leopard Gecko
+#         According to the American Pet Products Association (APPA) National Pet Owners Survey, 6 million U.S. households own a reptile.
+#         The leopard gecko (Eublepharis macularius) is a charming and fun choice for reptile lovers. Why? First of all, they''re undeniably cute, with leopard-like spots and little pink tongues. They''re small pets, reaching just 7 to 10 inches (17.8 to 25.4 cm) long at maturity.
+#         And unlike other geckos, leopard geckos can''t climb up walls, making escape unlikely. These low-maintenance pets are friendly enough for occasional handling but fine with being left alone, so long as you provide them with a heat lamp, food and water. (Their preferred diet? Meal worms and crickets).
+#         Just don''t pull on their tails — they are one of many lizard species that can drop their tails. If your gecko does drop their tail, it can regrow, but it won''t be as beautiful as the original.
+#         '),
+#
+#        ('https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2hlcm8tMTM3Mjc3Mjk1NC5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH0sInRvRm9ybWF0IjoiYXZpZiJ9fQ==',
+#         'World''s Largest Wolves by Weight: The Mighty and the At-Risk',
+#         'Himalayan Wolf
+#         Weighing around 77 pounds (34.9 kg) on average, the Himalayan wolf (Canis lupus chanco) is not your average wolf. Living up in the dizzying heights of the Himalayas, these wolves are the mountaineers of the canine world. They''re surviving and thriving at altitudes where even the air is a luxury.
+#         Imagine a creature so tough, it calls the roof of the world its home. Their diet? It''s all about local cuisine up there — yaks, sheep, and goats.
+#         Himalayan wolves have a palate fine-tuned for the high-altitude buffet, showcasing their incredible ability to adapt their hunting strategies to the rugged Himalayas. They don''t just deal with thin air, steep cliffs and prey as hardy as the environment; they also navigate a landscape that''s as unforgiving as it is beautiful.
+#         Mongolian Wolf
+#         Meet the Mongolian wolf (Canis lupus chanco), a rugged dweller of Mongolia''s vast steppes and dense forests, with an average weight range of 57 to 82 pounds (25.9 to 37.2 kg) and body length that often reaches up to 6 feet (1.8 meters). These wolves are the guardians of the Mongolian ecosystem, playing a crucial role in maintaining its delicate balance.
+#         Adapting to the unique and often harsh conditions of Mongolia, they''ve honed their skills in managing rodent populations, a task vital for preserving the health of their natural habitats. They stand as a testament to the critical role of predators in nature, ensuring the well-being of the ecosystem they inhabit.
+#         Red Wolf
+#         Venture into the wilds of North America, and you might be lucky enough to spot the elusive red wolf (Canis rufus), a creature that''s as much a symbol of beauty as it is of fragility.
+#         Weighing in around 50 to 85 pounds (22.7 to 38.9 kg), with an average length of about 4 feet (1.2 meters) from nose to tail tip, these wolves are a sight to behold with their distinct reddish brown fur.
+#         But here''s the catch: The red wolf is critically endangered.
+#         Once roaming vast stretches of the southeastern United States, their numbers have dwindled dramatically, making them a poignant emblem of wildlife conservation. Designated as endangered in 1967, conservation efforts led by the U.S. Fish and Wildlife Service have since been initiated.
+#         Currently, about 15 to 17 red wolves live in the wild in eastern North Carolina, and around 241 are in captive breeding programs across the United States.
+#         '),
+#
+#        ('https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3doaXRlLXNtb2tlLWZyb20tZXhoYXVzdC5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH0sInRvRm9ybWF0IjoiYXZpZiJ9fQ==',
+#         'What Causes White Smoke From Exhaust and How to Fix It?',
+#         'When a puff of white smoke from exhaust emerges from your car’s exhaust, it can be quite concerning. You may wonder what’s going on under the hood and whether your vehicle is in need of immediate attention. This article will shed light on the reasons behind white smoke from exhaust, common causes, and how to diagnose and fix the issue, ensuring your engine remains in optimal condition.
+#         White smoke from the exhaust is typically caused by water vapor, coolant leaks, and other engine-related issues. When temperatures inside the engine rise, steam may form, which could be an indication of a cracked cylinder head.
+#         A malfunctioning head gasket or other engine component can also result in white exhaust smoke, which can be a serious cause for concern if left unaddressed.
+#         However, if you notice thick white smoke that persists even after the engine has warmed up, it could indicate a more serious issue, such as a coolant leak or engine damage.
+#         In cold weather or during startup, water vapor present in the exhaust system can create white smoke, while blue smoke might be an indication of a different issue. Exhaust emissions, a natural byproduct of the combustion process, are typically harmless, as they dissipate quickly once the engine warms up. However, it’s essential to monitor the exhaust gas to ensure optimal performance and minimal environmental impact. Regularly inspecting your vehicle’s exhaust pipe can help identify any potential issues early on.
+#         Addressing the causes of white smoke from the exhaust can range from basic maintenance tasks to more intricate repairs that necessitate professional help. By identifying the root cause of the issue, you can determine the best course of action to eliminate white smoke and ensure your engine remains in optimal condition.
+#         Regular maintenance and inspection of your vehicle can help identify any potential issues before they become more serious.
+#         A blown head gasket can be repaired or replaced to eliminate white smoke from the exhaust. The process typically involves removing the cylinder head, cleaning the surfaces, and installing a new head gasket.
+#         It’s crucial to consult a repair manual or seek professional assistance to ensure the head gasket is replaced correctly and that all necessary steps are taken.
+#         If a damaged cylinder head is causing white smoke, replacement of the cylinder head is necessary. The precise steps for replacing a cylinder head may vary depending on the make and model of your vehicle, and it’s advisable to consult a repair manual or obtain professional assistance for comprehensive instructions. This ensures the cylinder head is replaced correctly and prevents further issues.
+#         Replacing a cylinder head is a complex process and should not be attempted without the proper knowledge.
+#         Repairing a cracked engine block can involve welding, brazing, cold metal stitching, or using repair compounds. The necessary steps for repairing a cracked engine block include cleaning the area, preparing the surface, applying the repair compound, and curing the compound.
+#         Preventive maintenance is of great importance in avoiding engine block repair, as it assists in identifying and addressing potential issues before they progress to serious and costly repairs.
+#         To prevent white smoke from your exhaust, it’s crucial to ensure proper engine health by regularly checking engine oil levels, using the appropriate grade of oil, and maintaining cleanliness of the engine. Inspect your vehicle for signs of oil or coolant leaks, white smoke from the exhaust, or any other unusual noises or smells, and take prompt action if any issues are observed.
+#         By addressing potential problems early, you can minimize the risk of costly repairs and keep your engine running properly.
+#         In conclusion, white smoke from your exhaust can be attributed to various causes, ranging from water vapor to engine-related issues. By understanding the potential causes, diagnosing the problem, and taking the necessary steps to fix it, you can ensure the health and longevity of your engine. Stay vigilant about preventive maintenance and promptly address any issues to keep your vehicle running smoothly and efficiently.
+#         '),
+#
+#        ('https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2RpZ2l0YWwtbGljZW5zZS1wbGF0ZS5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH0sInRvRm9ybWF0IjoiYXZpZiJ9fQ==',
+#         'License Plates Are Going Digital',
+#         'In 2008, long before the animated sloths worked the DMV counter in the hit movie "Zootopia," Neville Boston, CEO of Reviver Auto, wanted to find a way to simplify the vehicle registration process. He knew the process would only become better if drivers could avoid those sloths altogether and update their registration automatically and electronically.
+#         "People often wonder how I worked around the DMV," Boston says. "I didn''t. I worked with the DMV. They became like partners. But the process is the process." Which is probably why it still took Boston years to make his idea a reality, a digital license plate called RPlate Pro.
+#         The Reviver Auto RPlate Pro digital license plate, which is available in California, uses e-ink technology — just like Kindle e-readers — to display license plate numbers and registration dates in black and white. To update registrations, drivers simply use the RConnect platform to renew and pay the DMV online. Instead of waiting for stickers to be sent or, worse, visiting the DMV, RConnect automatically changes the dates on the digital license plate.
+#         Installing the plate is pretty easy, too. It connects to a car''s battery, but "it takes no power to show an image," Boston says, "so the plate will always operate as a license plate." Unless, that is, someone takes the plate off the car. In that case, it blanks out and sends a text message to the owner. Then the license plate digits are replaced with word STOLEN and makes its location known via the RConnect online platform. This is one smart plate!
+#         The RPlate Pro can display other messages, too. Owners can choose to have a different specialty plate every day to support causes like breast cancer awareness or college football teams. "You can have an unlimited amount of specialty plates on one plate," Boston says, noting that the states using his digital plates still receive revenue for specialty plates. The digital plates will also be able to display emergency messages such as Amber Alerts or severe weather warnings, similar to the messages broadcast on digital highway signs.
+#         Drivers could even put ads on their tags. For instance, if you own a business with a fleet of delivery trucks, you might consider displaying an ad on your companies'' plates. "When [business] vehicles are legally parked," Boston really emphasizes the legally here, "there is a messaging component."
+#         There are a lot of other advantages for fleet owners who use digital plates on their vehicles, Boston says. For one, the registration for any truck in the fleet can be renewed remotely, even if the truck is on a job miles away. The license plates can also tell the owner where every truck is located at any time. Owners can even pay bridge tolls via the plates, and Reviver Auto is working on an update so the plates will interface with parking meters.
+#         So what happens if you get rear-ended and your plate gets damaged? "First and foremost, [the plate] has to compliant," Boston says. That means no matter what, the license plate must be readable. He says the e-ink screen works the same way the safety glass in a car''s windshield does. If a rock hits your windshield, it cracks and spiders, but it doesn''t break. The same goes for the RPlate Pro.
+#         Besides the physical vulnerability of the plate, there''s also the digital security and privacy question. "We are extremely pro privacy," Boston says. "We talked to the ACLU and the Electronic Frontier Foundation, and we''re transparent about all information that we''re allowing to be enabled." For instance, drivers can choose to have GPS embedded on their license plates — or not. Turning it off means features like the stolen license plate location won''t work, but it''s an entirely optional setting in the privacy priorities.
+#         The RPlate Pro is on sale in California, and is also approved for use in Arizona, Texas and Florida (so far). But it''s not cheap. It will cost drivers $599 just for the license plate and another $8 per month for the service plan. Like so many automotive technologies, that price is expected to drop as the product continues to roll out, Boston says. "Our hope is to have one on every vehicle."
+#         While the RPlate may be expensive, it is an easy way to bring connectivity to older vehicles, whether they are privately owned or part of a business fleet. ReviverAuto plans to deploy the RPlate in nearly a dozen states in 2018, and internationally as well.
+#         ');
 
-INSERT INTO post_tags (post_id, tag_id)
-VALUES (1, 1),
-       (1, 2),
-       (2, 2),
-       (3, 3);
+# INSERT INTO tags (tag_name)
+# VALUES ('Science'),
+#        ('Culture'),
+#        ('Animals'),
+#        ('Auto');
+#
+# INSERT INTO post_tags (post_id, tag_id)
+# VALUES (1, 1),
+#        (2, 1),
+#        (3, 2),
+#        (4, 2),
+#        (5, 3),
+#        (6, 3),
+#        (7, 4),
+#        (8, 4);
 
 
 

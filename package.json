@@ -10,6 +10,7 @@
     "seed": "node seed-data.js"
   },
   "dependencies": {
+    "bootstrap": "^5.3.2",
     "mysql2": "^3.6.5",
     "next": "14.0.4",
     "react": "^18",

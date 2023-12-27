@@ -1074,8 +1074,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="291" parent="1" name="posts">
       <Current>1</Current>
-      <IntrospectionTimestamp>2023-12-27.13:41:35</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-12-27.11:41:35</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2023-12-27.18:31:12</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-27.16:31:12</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="sys">
@@ -1218,7 +1218,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="323" parent="300" name="context">
+    <column id="323" parent="300" name="content">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
@@ -1239,7 +1239,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="327" parent="301" name="tags_name">
+    <column id="327" parent="301" name="tag_name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>

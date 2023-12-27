@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
   user: "root",
   port: 3307,
   password: "example",
-  database: "posts",
+  // database: "posts",
 });
 
 connection.connect((err) => {
@@ -18,14 +18,14 @@ connection.connect((err) => {
   console.log("Connected to MySQL server");
 
   // Create the database if it doesn't exist
-  // const createDatabaseQuery = `CREATE DATABASE IF NOT EXISTS ${DB_NAME};`;
-  // connection.query(createDatabaseQuery, (createDatabaseError) => {
-  //   if (createDatabaseError) {
-  //     console.error("Error creating database:", createDatabaseError);
-  //     connection.end();
-  //     return;
-  //   }
-  // });
+  const createDatabaseQuery = `CREATE DATABASE IF NOT EXISTS ${DB_NAME};`;
+  connection.query(createDatabaseQuery, (createDatabaseError) => {
+    if (createDatabaseError) {
+      console.error("Error creating database:", createDatabaseError);
+      connection.end();
+      return;
+    }
+  });
 
   // Switch to the created database
   connection.changeUser({ database: DB_NAME }, (changeUserError) => {
@@ -55,7 +55,7 @@ connection.connect((err) => {
           id INT AUTO_INCREMENT PRIMARY KEY,
           image_url VARCHAR(255) NOT NULL,
           title VARCHAR(255) NOT NULL,
-          context TEXT NOT NULL
+          content TEXT NOT NULL
         )
         `;
 
@@ -76,7 +76,7 @@ connection.connect((err) => {
     const createTagsTableQuery = `
         CREATE TABLE IF NOT EXISTS tags (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            tags_name VARCHAR(255) NOT NULL
+            tag_name VARCHAR(255) NOT NULL
         )
         `;
 
@@ -87,7 +87,6 @@ connection.connect((err) => {
             id INT AUTO_INCREMENT PRIMARY KEY,
             post_id INT,
             tag_id INT,
-            PRIMARY KEY (id),
             FOREIGN KEY (post_id) REFERENCES posts(id),
             FOREIGN KEY (tag_id) REFERENCES tags(id)
         )
