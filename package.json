@@ -11,15 +11,20 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
+    "draft-convert": "^2.1.13",
+    "draft-js": "^0.11.7",
     "mysql2": "^3.6.5",
     "next": "14.0.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-draft-wysiwyg": "^1.15.0"
   },
   "devDependencies": {
+    "@types/draft-convert": "^2.1.8",
     "@types/node": "^20.10.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-draft-wysiwyg": "^1.13.7",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",

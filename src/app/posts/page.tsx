@@ -1,5 +1,8 @@
 import Link from "next/link";
 import styles from "./page.module.css";
+import Image from "next/image";
+import { Posts } from "@/app/types/postsType";
+import { Tag } from "@/app/types/tagType";
 
 async function getPosts() {
   const res = await fetch("http://localhost:3000/api/posts", {
@@ -11,28 +14,23 @@ async function getPosts() {
   return data.posts;
 }
 
-export type Tag = {
-  id: number;
-  tag_name: string;
-};
-
-export type Posts = {
-  id: number;
-  image_url: string;
-  title: string;
-  context: string;
-  tags: Tag[];
-};
-
 export default async function TicketList() {
   const posts = (await getPosts()) as Posts[];
   console.log(posts);
 
   return (
     <>
-      <div>
+      <div className={styles.globalContainer}>
         {posts.map((post: Posts) => (
           <div key={post.id} className={styles.innerContainer}>
+            <Image
+              src={post.image_url}
+              width={200}
+              height={200}
+              className={styles.image}
+              priority={false}
+              alt="post picture"
+            />
             <h3>{post.title}</h3>
             <div>
               {post.tags.map((tag: Tag) => (
