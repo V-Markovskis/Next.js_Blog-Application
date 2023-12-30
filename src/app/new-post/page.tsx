@@ -30,14 +30,32 @@ const NewPostCreation = () => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-  const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && e.currentTarget.value) {
-      setFormValues({
-        ...formValues,
-        tags: [...formValues.tags, e.currentTarget.value.trim()],
-      });
-      // e.currentTarget.value = "";
-    }
+
+  const [tagName, setTagName] = useState("");
+  // const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  //   if (e.key === "Enter") {
+  //     e.preventDefault();
+  //     if (e.currentTarget.value.trim()) {
+  //       setFormValues((prevState) => ({
+  //         ...prevState,
+  //         tags: [...prevState.tags, e.currentTarget.value.trim()],
+  //       }));
+  //       e.currentTarget.value = "";
+  //     }
+  //   }
+  // };
+
+  const handleAddTag = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setFormValues({ ...formValues, tags: [...formValues.tags, tagName] });
+    setTagName("");
+  };
+
+  const removeTag = (index: number) => {
+    setFormValues((prevState) => ({
+      ...prevState,
+      tags: prevState.tags.filter((_, tagIndex) => tagIndex !== index),
+    }));
   };
 
   //https://github.com/jpuri/react-draft-wysiwyg/issues/1007
@@ -62,6 +80,7 @@ const NewPostCreation = () => {
           postContent(formValues);
         }
         setFormValues(initialState);
+        setEditorState(() => EditorState.createEmpty());
       }}
     >
       <header className={styles.header}>New Post Creation</header>
@@ -110,9 +129,21 @@ const NewPostCreation = () => {
           name="tag"
           id="tag"
           placeholder="Example: Books"
-          onKeyDown={handleAddTag}
-          required
+          value={tagName}
+          onChange={(e) => {
+            setTagName(e.target.value);
+          }}
         />
+        <button onClick={handleAddTag}>Add Tag</button>
+      </div>
+      <br />
+      <div className="tags-display">
+        {formValues.tags.map((tag, index) => (
+          <span key={index} className="tag">
+            {tag}
+            <button onClick={() => removeTag(index)}>Remove</button>
+          </span>
+        ))}
       </div>
       <br />
       <br />

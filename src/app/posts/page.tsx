@@ -11,6 +11,11 @@ export default async function TicketList() {
 
   return (
     <>
+      <div>
+        <Link href="/">
+          <button className="btn btn-success">Back to home page</button>
+        </Link>
+      </div>
       <div className={styles.globalContainer}>
         {posts.map((post: Posts) => (
           <div key={post.id} className={styles.innerContainer}>
@@ -33,11 +38,6 @@ export default async function TicketList() {
       </div>
       {posts.length === 0 && <p className="text-center">No posts created!</p>}
       <br />
-      <div>
-        <Link href="/">
-          <button className="btn btn-success">Back to home page</button>
-        </Link>
-      </div>
     </>
   );
 }
