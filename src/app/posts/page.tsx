@@ -3,16 +3,7 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { Posts } from "@/app/types/postsType";
 import { Tag } from "@/app/types/tagType";
-
-async function getPosts() {
-  const res = await fetch("http://localhost:3000/api/posts", {
-    next: {
-      revalidate: 0, // use 0 to opt out of using cache
-    },
-  });
-  const data = await res.json();
-  return data.posts;
-}
+import { getPosts } from "@/requestsToAPI/getPosts";
 
 export default async function TicketList() {
   const posts = (await getPosts()) as Posts[];

@@ -1,0 +1,15 @@
+import { valuesToPost } from "@/app/new-post/page";
+
+export async function postContent(formValues: valuesToPost) {
+  console.log("formValues in postContent start", formValues);
+  try {
+    const res = await fetch("http://localhost:3000/api/new-post", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formValues),
+    });
+    console.log("formValues in postContent after", formValues);
+  } catch (error) {
+    throw error;
+  }
+}

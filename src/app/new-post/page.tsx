@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { convertToRaw, EditorState } from "draft-js";
 //https://stackoverflow.com/questions/63451068/window-is-not-defined-react-draft-wysiwyg-used-with-next-js-ssr
 const Editor = dynamic(
@@ -10,11 +10,19 @@ import styles from "./page.module.css";
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from "next/dynamic";
+import { postContent } from "@/requestsToAPI/postNewContent";
 
-const initialState = {
+export type valuesToPost = {
+  image_url: string;
+  title: string;
+  tags: string[];
+  content: string;
+};
+
+const initialState: valuesToPost = {
   image_url: "",
   title: "",
-  tag: "",
+  tags: [],
   content: "",
 };
 
@@ -22,30 +30,47 @@ const NewPostCreation = () => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
+  const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && e.currentTarget.value) {
+      setFormValues({
+        ...formValues,
+        tags: [...formValues.tags, e.currentTarget.value.trim()],
+      });
+      // e.currentTarget.value = "";
+    }
+  };
+
+  //https://github.com/jpuri/react-draft-wysiwyg/issues/1007
+  const isEditorEmpty = () => {
+    const contentState = editorState.getCurrentContent();
+    return !contentState.hasText();
+  };
 
   const [formValues, setFormValues] = useState(initialState);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submit clicked");
-
-    // let check = convertToRaw(editorState?.getCurrentContent());
-    // setFormValues({ ...formValues, content: JSON.stringify(check).toString() });
-
-    console.log("formValues", formValues);
-
-    setFormValues(initialState);
-  };
-
   return (
-    <form className={styles.container} onSubmit={handleSubmit}>
+    <form
+      className={styles.container}
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log("formValues", formValues);
+
+        if (isEditorEmpty()) {
+          alert("Enter content for post");
+          return;
+        } else {
+          postContent(formValues);
+        }
+        setFormValues(initialState);
+      }}
+    >
       <header className={styles.header}>New Post Creation</header>
       <div className="preference">
         <label htmlFor="imageUrl">Enter image URL:</label>
         <br />
         <br />
         <input
-          type="url"
+          type="text"
           name="imageUrl"
           id="imageUrl"
           placeholder="https..."
@@ -53,6 +78,7 @@ const NewPostCreation = () => {
           onChange={(e) => {
             setFormValues({ ...formValues, image_url: e.target.value });
           }}
+          required
         />
       </div>
       <br />
@@ -70,6 +96,7 @@ const NewPostCreation = () => {
           onChange={(e) => {
             setFormValues({ ...formValues, title: e.target.value });
           }}
+          required
         />
       </div>
       <br />
@@ -83,10 +110,8 @@ const NewPostCreation = () => {
           name="tag"
           id="tag"
           placeholder="Example: Books"
-          value={formValues.tag}
-          onChange={(e) => {
-            setFormValues({ ...formValues, tag: e.target.value });
-          }}
+          onKeyDown={handleAddTag}
+          required
         />
       </div>
       <br />

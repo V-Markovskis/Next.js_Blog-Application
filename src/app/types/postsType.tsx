@@ -1,9 +1,9 @@
-import { Tag } from "@/app/posts/page";
+import { Tag } from "@/app/types/tagType";
 
 export type Posts = {
   id: number;
   image_url: string;
   title: string;
-  context: string;
+  content: string;
   tags: Tag[];
 };

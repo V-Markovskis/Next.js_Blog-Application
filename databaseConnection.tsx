@@ -26,3 +26,14 @@ export default async function executeQuery({
     return { error };
   }
 }
+
+// export async function queryWithMetaData({ query, values }: ExecuteQueryTypes) {
+//   try {
+//     const connection = await getConnection();
+//     const [results] = await connection.execute(query, values);
+//     await connection.end();
+//     return results;
+//   } catch (error) {
+//     return { error };
+//   }
+// }

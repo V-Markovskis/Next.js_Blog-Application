@@ -140,7 +140,7 @@
 #         The RPlate Pro is on sale in California, and is also approved for use in Arizona, Texas and Florida (so far). But it''s not cheap. It will cost drivers $599 just for the license plate and another $8 per month for the service plan. Like so many automotive technologies, that price is expected to drop as the product continues to roll out, Boston says. "Our hope is to have one on every vehicle."
 #         While the RPlate may be expensive, it is an easy way to bring connectivity to older vehicles, whether they are privately owned or part of a business fleet. ReviverAuto plans to deploy the RPlate in nearly a dozen states in 2018, and internationally as well.
 #         ');
-
+#
 # INSERT INTO tags (tag_name)
 # VALUES ('Science'),
 #        ('Culture'),
@@ -156,7 +156,7 @@
 #        (6, 3),
 #        (7, 4),
 #        (8, 4);
-
-
-
-
+#
+#
+#
+#
