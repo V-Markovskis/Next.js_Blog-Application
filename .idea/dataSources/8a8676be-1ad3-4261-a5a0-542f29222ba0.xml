@@ -1077,8 +1077,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="292" parent="1" name="posts">
       <Current>1</Current>
-      <IntrospectionTimestamp>2023-12-30.15:37:38</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-12-30.13:37:38</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2023-12-31.19:20:48</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-31.17:20:48</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="root"/>

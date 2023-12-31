@@ -1,6 +1,5 @@
 import executeQuery from "../../../../databaseConnection";
 import { Posts } from "@/app/types/postsType";
-import { valuesToPost } from "@/app/new-post/page";
 
 export async function GET() {
   try {

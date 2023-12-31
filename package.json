@@ -13,6 +13,8 @@
     "bootstrap": "^5.3.2",
     "draft-convert": "^2.1.13",
     "draft-js": "^0.11.7",
+    "draft-js-export-html": "^1.4.1",
+    "draftjs-to-html": "^0.9.1",
     "mysql2": "^3.6.5",
     "next": "14.0.4",
     "react": "^18",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "@types/draft-convert": "^2.1.8",
+    "@types/draftjs-to-html": "^0.8.4",
     "@types/node": "^20.10.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",

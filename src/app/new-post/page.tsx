@@ -32,18 +32,6 @@ const NewPostCreation = () => {
   );
 
   const [tagName, setTagName] = useState("");
-  // const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === "Enter") {
-  //     e.preventDefault();
-  //     if (e.currentTarget.value.trim()) {
-  //       setFormValues((prevState) => ({
-  //         ...prevState,
-  //         tags: [...prevState.tags, e.currentTarget.value.trim()],
-  //       }));
-  //       e.currentTarget.value = "";
-  //     }
-  //   }
-  // };
 
   const handleAddTag = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -80,7 +68,7 @@ const NewPostCreation = () => {
           postContent(formValues);
         }
         setFormValues(initialState);
-        setEditorState(() => EditorState.createEmpty());
+        // setEditorState(() => EditorState.createEmpty());
       }}
     >
       <header className={styles.header}>New Post Creation</header>

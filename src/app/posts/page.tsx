@@ -7,7 +7,6 @@ import { getPosts } from "@/requestsToAPI/getPosts";
 
 export default async function TicketList() {
   const posts = (await getPosts()) as Posts[];
-  console.log(posts);
 
   return (
     <>
@@ -27,7 +26,9 @@ export default async function TicketList() {
               priority={false}
               alt="post picture"
             />
-            <h3>{post.title}</h3>
+            <Link href={`/posts/${post.id}`}>
+              <h3>{post.title}</h3>
+            </Link>
             <div>
               {post.tags.map((tag: Tag) => (
                 <div key={tag.id}>{tag.tag_name}</div>
