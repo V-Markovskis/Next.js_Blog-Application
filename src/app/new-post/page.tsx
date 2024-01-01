@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { convertToRaw, EditorState } from "draft-js";
+import DOMPurify from "dompurify";
+
 //https://stackoverflow.com/questions/63451068/window-is-not-defined-react-draft-wysiwyg-used-with-next-js-ssr
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
@@ -11,6 +13,7 @@ import styles from "./page.module.css";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from "next/dynamic";
 import { postContent } from "@/requestsToAPI/postNewContent";
+import draftToHtml from "draftjs-to-html";
 
 export type valuesToPost = {
   image_url: string;
@@ -68,7 +71,7 @@ const NewPostCreation = () => {
           postContent(formValues);
         }
         setFormValues(initialState);
-        // setEditorState(() => EditorState.createEmpty());
+        setEditorState(() => EditorState.createEmpty());
       }}
     >
       <header className={styles.header}>New Post Creation</header>
@@ -143,12 +146,16 @@ const NewPostCreation = () => {
         onContentStateChange={() => {
           //get current value = rich text editor instance
           const contentState = editorState.getCurrentContent();
-          //convert into JSON = saving all styles with text
-          const rawContentState = convertToRaw(contentState);
+          //convert into JSON = saving all styles with text => converting to HTML with styles
+          const contentConvertToHtml = draftToHtml(convertToRaw(contentState));
+          //sanitize the HTML content
+          const sanitizedHtml = DOMPurify.sanitize(
+            JSON.stringify(contentConvertToHtml)
+          );
 
           setFormValues({
             ...formValues,
-            content: JSON.stringify(rawContentState),
+            content: contentConvertToHtml,
           });
         }}
         toolbarClassName={styles.toolbarClass}

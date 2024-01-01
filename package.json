@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
+    "dompurify": "^3.0.6",
     "draft-convert": "^2.1.13",
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
@@ -22,6 +23,7 @@
     "react-draft-wysiwyg": "^1.15.0"
   },
   "devDependencies": {
+    "@types/dompurify": "^3.0.5",
     "@types/draft-convert": "^2.1.8",
     "@types/draftjs-to-html": "^0.8.4",
     "@types/node": "^20.10.5",

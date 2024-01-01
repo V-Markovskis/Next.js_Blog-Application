@@ -1077,8 +1077,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="292" parent="1" name="posts">
       <Current>1</Current>
-      <IntrospectionTimestamp>2023-12-31.19:20:48</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-12-31.17:20:48</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2024-01-01.20:37:24</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-01-01.18:37:24</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="root"/>
@@ -1161,7 +1161,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="311" parent="299" name="id">
-      <AutoIncrement>9</AutoIncrement>
+      <AutoIncrement>11</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1203,7 +1203,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="320" parent="300" name="id">
-      <AutoIncrement>9</AutoIncrement>
+      <AutoIncrement>11</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1234,7 +1234,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="326" parent="301" name="id">
-      <AutoIncrement>5</AutoIncrement>
+      <AutoIncrement>7</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>

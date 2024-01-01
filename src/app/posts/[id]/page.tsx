@@ -2,7 +2,7 @@ import React from "react";
 import styles from "@/app/posts/page.module.css";
 import Image from "next/image";
 import { Tag } from "@/app/types/tagType";
-import draftToHtml from "draftjs-to-html";
+import DOMPurify from "dompurify";
 
 export async function getPost(id: number) {
   try {
@@ -27,11 +27,8 @@ export default async function PostDetails({
 }) {
   const post = await getPost(params.id);
 
-  const rawContentState = JSON.parse(post.content);
-  const html = draftToHtml(rawContentState);
-
   function createMarkup() {
-    return { __html: html };
+    return { __html: post.content };
   }
 
   return (
