@@ -2,23 +2,8 @@ import React from "react";
 import styles from "@/app/posts/page.module.css";
 import Image from "next/image";
 import { Tag } from "@/app/types/tagType";
-import DOMPurify from "dompurify";
-
-export async function getPost(id: number) {
-  try {
-    const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
-      next: {
-        revalidate: 0,
-      },
-    });
-
-    const data = await res.json();
-    return data.post;
-  } catch (error) {
-    console.error("Error in GET request for single post:", error);
-    throw error;
-  }
-}
+import { getPost } from "@/requestsToAPI/getPost";
+import CommentsForPost from "@/app/Components/Comments/CommentsForPost";
 
 export default async function PostDetails({
   params,
@@ -53,6 +38,7 @@ export default async function PostDetails({
         />
         <div dangerouslySetInnerHTML={createMarkup()} />
       </div>
+      <CommentsForPost post={post} />
     </main>
   );
 }
