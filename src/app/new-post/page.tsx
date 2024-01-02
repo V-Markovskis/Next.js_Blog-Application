@@ -14,6 +14,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from "next/dynamic";
 import { postContent } from "@/requestsToAPI/postNewContent";
 import draftToHtml from "draftjs-to-html";
+import { useRouter } from "next/navigation";
 
 export type valuesToPost = {
   image_url: string;
@@ -30,6 +31,7 @@ const initialState: valuesToPost = {
 };
 
 const NewPostCreation = () => {
+  const router = useRouter();
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
@@ -69,6 +71,8 @@ const NewPostCreation = () => {
           return;
         } else {
           postContent(formValues);
+          router.refresh();
+          router.push("/posts");
         }
         setFormValues(initialState);
         setEditorState(() => EditorState.createEmpty());

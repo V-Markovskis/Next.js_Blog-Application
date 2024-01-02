@@ -2,7 +2,7 @@ import executeQuery from "../../../../databaseConnection";
 import { Tag } from "@/app/types/tagType";
 import { ResultSetHeader } from "mysql2";
 
-type extractIndexType = {
+type ExtractIndexType = {
   id: number;
 };
 
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
         const tagResult = (await executeQuery({
           query: "SELECT id FROM tags WHERE tag_name = ?",
           values: [tagName],
-        })) as extractIndexType[];
+        })) as ExtractIndexType[];
 
         console.log("Tag id is found in tags table", tagResult);
 

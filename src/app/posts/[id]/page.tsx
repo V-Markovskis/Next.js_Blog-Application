@@ -8,7 +8,7 @@ export async function getPost(id: number) {
   try {
     const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
       next: {
-        revalidate: 60,
+        revalidate: 0,
       },
     });
 
