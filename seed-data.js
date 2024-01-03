@@ -97,7 +97,7 @@ connection.connect((err) => {
     const createUsersTableQuery = `
         CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            login_email VARCHAR(255),
+            email VARCHAR(255),
             password VARCHAR(255)
         )
         `;

@@ -10,6 +10,7 @@
     "seed": "node seed-data.js"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.2",
     "dompurify": "^3.0.6",
     "draft-convert": "^2.1.13",
@@ -18,11 +19,14 @@
     "draftjs-to-html": "^0.9.1",
     "mysql2": "^3.6.5",
     "next": "14.0.4",
+    "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
-    "react-draft-wysiwyg": "^1.15.0"
+    "react-draft-wysiwyg": "^1.15.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/dompurify": "^3.0.5",
     "@types/draft-convert": "^2.1.8",
     "@types/draftjs-to-html": "^0.8.4",

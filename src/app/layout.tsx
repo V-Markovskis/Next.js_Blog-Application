@@ -1,9 +1,11 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
-import React from "react";
 import Navbar from "@/app/Components/Navigation/Navbar";
+import Providers from "@/app/Components/Providers";
+import Loader from "@/app/Components/Loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,12 +18,17 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
+  pageProps: any;
 }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        {children}
+        <Providers>
+          <Loader>
+            <Navbar />
+            {children}
+          </Loader>
+        </Providers>
       </body>
     </html>
   );

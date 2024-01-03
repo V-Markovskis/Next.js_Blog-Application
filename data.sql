@@ -276,3 +276,4 @@
 #        (7, 4),
 #        (8, 4);
 
+INSERT INTO users (email ) VALUES ('vlads.markovskis@gmail.com')
