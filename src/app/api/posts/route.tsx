@@ -1,5 +1,6 @@
 import executeQuery from "../../../../databaseConnection";
 import { Posts } from "@/app/types/postsType";
+import { saveTags } from "@/app/api/new-post/route";
 
 export async function GET() {
   try {
@@ -9,7 +10,11 @@ export async function GET() {
     })) as Posts[];
 
     if (posts.length === 0) {
-      return { status: 404, json: { message: "No posts found" } };
+      return Response.json({
+        posts: [],
+        status: 404,
+        json: { message: "No posts found" },
+      });
     }
 
     const postsWithTags = await Promise.all(
@@ -25,6 +30,33 @@ export async function GET() {
 
     // Successfully retrieved posts
     return Response.json({ posts: postsWithTags });
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return Response.json({
+      posts: [],
+      status: 500,
+      json: { message: "Internal server error" },
+    });
+  }
+}
+
+export async function PUT(request: Request) {
+  const { id, image_url, title, content, tags } = await request.json();
+  try {
+    const postUpdateResult = (await executeQuery({
+      query: "UPDATE posts SET image_url = ?, title = ?, content = ?",
+      values: [image_url, title, content],
+    })) as Posts[];
+
+    const tagsDeleteResult = (await executeQuery({
+      query: "DELETE FROM post_tags WHERE post_id = ?",
+      values: [id],
+    })) as Posts[];
+
+    const tagsUpdateResult = await saveTags(tags, id);
+
+    // Successfully retrieved posts
+    return Response.json("Post updates successfully!");
   } catch (error) {
     console.error("Error fetching posts:", error);
     return { status: 500, json: { message: "Internal server error" } };

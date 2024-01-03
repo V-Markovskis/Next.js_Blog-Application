@@ -17,43 +17,47 @@ export async function POST(request: Request) {
 
     const postId = postResult.insertId;
 
-    const tagPromise = await Promise.all(
-      tags.map(async (tagName: Tag) => {
-        let tagId;
-
-        //check if the tag already exists
-        const tagResult = (await executeQuery({
-          query: "SELECT id FROM tags WHERE tag_name = ?",
-          values: [tagName],
-        })) as ExtractIndexType[];
-
-        console.log("Tag id is found in tags table", tagResult);
-
-        //if tag exists
-        if (tagResult.length > 0) {
-          tagId = tagResult[0].id;
-        } else {
-          //or insert new tag name
-          const newTag = (await executeQuery({
-            query: "INSERT INTO tags (tag_name) VALUES (?)",
-            values: [tagName],
-          })) as ResultSetHeader;
-          tagId = newTag.insertId;
-          console.log("Get last inserted ID", tagId);
-        }
-        //populate post_tags with result values
-        await executeQuery({
-          query: "INSERT INTO post_tags (post_id, tag_id) VALUES (?, ?)",
-          values: [postId, tagId],
-        });
-      })
-    );
+    const tagPromise = await saveTags(tags, postId);
     return Response.json({ message: "Post and tags created successfully." });
   } catch (error) {
     console.error("Error fetching posts:", error);
     return { status: 500, json: { message: "Internal server error" } };
   }
 }
+
+export const saveTags = async (tags: Tag[], postId: number) => {
+  return Promise.all(
+    tags.map(async (tagName: Tag) => {
+      let tagId;
+
+      //check if the tag already exists
+      const tagResult = (await executeQuery({
+        query: "SELECT id FROM tags WHERE tag_name = ?",
+        values: [tagName],
+      })) as ExtractIndexType[];
+
+      console.log("Tag id is found in tags table", tagResult);
+
+      //if tag exists
+      if (tagResult.length > 0) {
+        tagId = tagResult[0].id;
+      } else {
+        //or insert new tag name
+        const newTag = (await executeQuery({
+          query: "INSERT INTO tags (tag_name) VALUES (?)",
+          values: [tagName],
+        })) as ResultSetHeader;
+        tagId = newTag.insertId;
+        console.log("Get last inserted ID", tagId);
+      }
+      //populate post_tags with result values
+      await executeQuery({
+        query: "INSERT INTO post_tags (post_id, tag_id) VALUES (?, ?)",
+        values: [postId, tagId],
+      });
+    })
+  );
+};
 
 // export async function POST(request: Request) {
 //     try {

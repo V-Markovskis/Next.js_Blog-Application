@@ -1,4 +1,4 @@
-import { valuesToPost } from "@/app/new-post/page";
+import { valuesToPost } from "@/app/Components/NewPost";
 
 export async function postContent(formValues: valuesToPost) {
   console.log("formValues in postContent start", formValues);
