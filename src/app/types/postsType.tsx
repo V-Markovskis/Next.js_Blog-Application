@@ -1,4 +1,5 @@
 import { Tag } from "@/app/types/tagType";
+import { Comments } from "@/app/Components/Comments/CommentsForPost";
 
 export type Posts = {
   id: number;
@@ -6,4 +7,5 @@ export type Posts = {
   title: string;
   content: string;
   tags: Tag[];
+  comments: Comments[];
 };

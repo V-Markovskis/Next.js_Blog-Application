@@ -2,25 +2,28 @@
 import React, { useState } from "react";
 import { Posts } from "@/app/types/postsType";
 import DisplayComment from "@/app/Components/CommentsDisplay/DisplayComment";
-import { postComments } from "@/requestsToAPI/postComments";
+import { deleteComment, postComments } from "@/requestsToAPI/comments";
+import { useRouter } from "next/navigation";
 
 type CommentsForPostProps = {
   post: Posts;
 };
 
 export type Comments = {
-  author: string;
-  content: string;
+  author_name: string;
+  comment_context: string;
   post_id: number;
+  id?: number;
 };
 
 const initialState: Comments = {
-  author: "",
-  content: "",
+  author_name: "",
+  comment_context: "",
   post_id: -1,
 };
 
 const CommentsForPost = ({ post }: CommentsForPostProps) => {
+  const router = useRouter();
   const [comments, setComments] = useState<Comments[]>([]);
   const [comment, setComment] = useState(initialState);
   return (
@@ -30,8 +33,9 @@ const CommentsForPost = ({ post }: CommentsForPostProps) => {
           e.preventDefault();
           const updatedComments = [...comments, comment];
           //PASS DATA INTO DB
-          setComments(updatedComments);
           postComments(comment);
+          router.refresh();
+          setComments(updatedComments);
           setComment(initialState);
         }}
       >
@@ -42,9 +46,9 @@ const CommentsForPost = ({ post }: CommentsForPostProps) => {
           type="text"
           id="author"
           placeholder="Enter your name"
-          value={comment.author}
+          value={comment.author_name}
           onChange={(e) => {
-            setComment({ ...comment, author: e.target.value });
+            setComment({ ...comment, author_name: e.target.value });
           }}
         />
         <br />
@@ -56,11 +60,11 @@ const CommentsForPost = ({ post }: CommentsForPostProps) => {
           type="text"
           id="comment"
           placeholder="Example: Like it!"
-          value={comment.content}
+          value={comment.comment_context}
           onChange={(e) => {
             setComment({
               ...comment,
-              content: e.target.value,
+              comment_context: e.target.value,
               post_id: post.id,
             });
           }}
@@ -69,9 +73,21 @@ const CommentsForPost = ({ post }: CommentsForPostProps) => {
         <br />
         <button>Submit</button>
       </form>
-      {comments &&
-        comments.map((comment, key) => (
-          <DisplayComment key={key} comment={comment} />
+      {post.comments &&
+        post.comments.map((comment, key) => (
+          <div key={key}>
+            <div>{comment.author_name}</div>
+            <div>{comment.comment_context}</div>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                deleteComment(comment.id as number);
+                router.refresh();
+              }}
+            >
+              Delete
+            </button>
+          </div>
         ))}
     </div>
   );

@@ -8,6 +8,7 @@ export async function getPost(id: number) {
 
     const data = await res.json();
     return data.post;
+    // return data;
   } catch (error) {
     console.error("Error in GET request for single post:", error);
     throw error;

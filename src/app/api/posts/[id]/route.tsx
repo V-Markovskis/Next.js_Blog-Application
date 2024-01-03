@@ -7,7 +7,6 @@ export async function GET(
 ) {
   try {
     const id = params.id;
-    console.log("id received", id);
     const singlePost = (await executeQuery({
       query: "SELECT * FROM posts WHERE id = ?;",
       values: [id],
@@ -25,10 +24,18 @@ export async function GET(
               WHERE post_tags.post_id = ?;`,
       values: [id],
     });
-    const postWithTags = { ...post, tags };
+
+    const comments = await executeQuery({
+      query: `SELECT * FROM comments WHERE post_id = ?`,
+      values: [id],
+    });
+
+    console.log("comments in backend", comments);
+
+    const postWithTagsAndComments = { ...post, tags, comments };
 
     // Successfully retrieved post
-    return Response.json({ post: postWithTags });
+    return Response.json({ post: postWithTagsAndComments });
   } catch (error) {
     console.error("Error fetching posts:", error);
     return { status: 500, json: { message: "Internal server error" } };
