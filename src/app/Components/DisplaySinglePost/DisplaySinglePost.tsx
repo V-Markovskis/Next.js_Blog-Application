@@ -39,7 +39,7 @@ const DisplaySinglePost = ({ post }: DisplaySinglePostProps) => {
           />
           <div dangerouslySetInnerHTML={createMarkup()} />
         </div>
-        <CommentsForPost post={post} />
+        <CommentsForPost post={post} isEditing={false} />
       </main>
     </div>
   );

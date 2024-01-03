@@ -1,12 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Posts } from "@/app/types/postsType";
-import DisplayComment from "@/app/Components/CommentsDisplay/DisplayComment";
-import { deleteComment, postComments } from "@/requestsToAPI/comments";
+import { postComments, putComment } from "@/requestsToAPI/comments";
 import { useRouter } from "next/navigation";
+import DisplayComment from "@/app/Components/CommentsDisplay/DisplayComment";
+import styles from "./Comments.module.css";
 
 type CommentsForPostProps = {
   post: Posts;
+  initialState?: Comments;
+  isEditing?: boolean;
+  setIsEditing?: (isEditing: boolean) => void;
 };
 
 export type Comments = {
@@ -16,16 +20,28 @@ export type Comments = {
   id?: number;
 };
 
-const initialState: Comments = {
+export const emptyState: Comments = {
   author_name: "",
   comment_context: "",
   post_id: -1,
 };
 
-const CommentsForPost = ({ post }: CommentsForPostProps) => {
+const CommentsForPost = ({
+  post,
+  initialState,
+  isEditing,
+  setIsEditing,
+}: CommentsForPostProps) => {
   const router = useRouter();
   const [comments, setComments] = useState<Comments[]>([]);
-  const [comment, setComment] = useState(initialState);
+  const [comment, setComment] = useState(emptyState);
+
+  useEffect(() => {
+    if (initialState && isEditing) {
+      setComment(initialState);
+    }
+  }, [initialState]);
+
   return (
     <div>
       <form
@@ -33,10 +49,15 @@ const CommentsForPost = ({ post }: CommentsForPostProps) => {
           e.preventDefault();
           const updatedComments = [...comments, comment];
           //PASS DATA INTO DB
-          postComments(comment);
+          if (isEditing && setIsEditing) {
+            putComment(comment);
+            setIsEditing(false);
+          } else {
+            postComments(comment);
+            setComments(updatedComments);
+            setComment(emptyState);
+          }
           router.refresh();
-          setComments(updatedComments);
-          setComment(initialState);
         }}
       >
         <label htmlFor="author">Author:</label>
@@ -47,6 +68,7 @@ const CommentsForPost = ({ post }: CommentsForPostProps) => {
           id="author"
           placeholder="Enter your name"
           value={comment.author_name}
+          disabled={isEditing}
           onChange={(e) => {
             setComment({ ...comment, author_name: e.target.value });
           }}
@@ -71,24 +93,14 @@ const CommentsForPost = ({ post }: CommentsForPostProps) => {
         />
         <br />
         <br />
-        <button>Submit</button>
+        <button>{isEditing ? "Save" : "Submit"}</button>
       </form>
-      {post.comments &&
-        post.comments.map((comment, key) => (
-          <div key={key}>
-            <div>{comment.author_name}</div>
-            <div>{comment.comment_context}</div>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                deleteComment(comment.id as number);
-                router.refresh();
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
+      <div className={styles.comments_wrapper}>
+        {post.comments &&
+          post.comments.map((comment, key) => (
+            <DisplayComment comment={comment} key={key} post={post} />
+          ))}
+      </div>
     </div>
   );
 };
