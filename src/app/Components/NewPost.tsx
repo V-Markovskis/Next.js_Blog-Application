@@ -14,6 +14,7 @@ import draftToHtml from "draftjs-to-html";
 import { useRouter } from "next/navigation";
 import { Posts } from "@/app/types/postsType";
 import { updatePost } from "@/requestsToAPI/posts";
+import { useSession } from "next-auth/react";
 
 const emptyState: valuesToPost = {
   image_url: "",
@@ -48,6 +49,7 @@ const NewPost = ({ isEditing, initialValue, setIsEditing }: NewPost) => {
     EditorState.createEmpty()
   );
   const [tagName, setTagName] = useState("");
+  const { data: session } = useSession();
 
   const handleAddTag = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -83,124 +85,136 @@ const NewPost = ({ isEditing, initialValue, setIsEditing }: NewPost) => {
     }
   }, [isEditing, initialValue]);
 
+  useEffect(() => {
+    if (!session?.user) {
+      router.push("/api/auth/signin");
+    }
+  }, []);
+
   return (
-    <form
-      className={styles.container}
-      onSubmit={async (e) => {
-        e.preventDefault();
-        console.log("formValues", formValues);
+    <>
+      {session?.user && (
+        <form
+          className={styles.container}
+          onSubmit={async (e) => {
+            e.preventDefault();
+            console.log("formValues", formValues);
 
-        if (isEditorEmpty()) {
-          alert("Enter content for post");
-          return;
-        } else {
-          if (isEditing) {
-            await updatePost(formValues);
-            if (setIsEditing) {
-              setIsEditing(false);
+            if (isEditorEmpty()) {
+              alert("Enter content for post");
+              return;
+            } else {
+              if (isEditing) {
+                await updatePost(formValues);
+                if (setIsEditing) {
+                  setIsEditing(false);
+                }
+              } else {
+                await postContent(formValues);
+                router.push("/posts");
+              }
+              router.refresh();
             }
-          } else {
-            await postContent(formValues);
-            router.push("/posts");
-          }
-          router.refresh();
-        }
-        setFormValues(emptyState);
-        setEditorState(() => EditorState.createEmpty());
-      }}
-    >
-      <header className={styles.header}>New Post Creation</header>
-      <div className="preference">
-        <label htmlFor="imageUrl">Enter image URL:</label>
-        <br />
-        <br />
-        <input
-          type="text"
-          name="imageUrl"
-          id="imageUrl"
-          placeholder="https..."
-          value={formValues.image_url}
-          onChange={(e) => {
-            setFormValues({ ...formValues, image_url: e.target.value });
+            setFormValues(emptyState);
+            setEditorState(() => EditorState.createEmpty());
           }}
-          required
-        />
-      </div>
-      <br />
-      <br />
-      <div className="preference">
-        <label htmlFor="title">Enter post title:</label>
-        <br />
-        <br />
-        <input
-          type="text"
-          name="title"
-          id="title"
-          placeholder="Title should be here..."
-          value={formValues.title}
-          onChange={(e) => {
-            setFormValues({ ...formValues, title: e.target.value });
-          }}
-          required
-        />
-      </div>
-      <br />
-      <br />
-      <div className="preference">
-        <label htmlFor="tag">Enter post tag:</label>
-        <br />
-        <br />
-        <input
-          type="text"
-          name="tag"
-          id="tag"
-          placeholder="Example: Books"
-          value={tagName}
-          onChange={(e) => {
-            setTagName(e.target.value);
-          }}
-        />
-        <button onClick={handleAddTag}>Add Tag</button>
-      </div>
-      <br />
-      <div className="tags-display">
-        {formValues.tags.map((tag, index) => (
-          <span key={index} className="tag">
-            {tag}
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                removeTag(index);
+        >
+          <header className={styles.header}>New Post Creation</header>
+          <div className="preference">
+            <label htmlFor="imageUrl">Enter image URL:</label>
+            <br />
+            <br />
+            <input
+              type="text"
+              name="imageUrl"
+              id="imageUrl"
+              placeholder="https..."
+              value={formValues.image_url}
+              onChange={(e) => {
+                setFormValues({ ...formValues, image_url: e.target.value });
               }}
-            >
-              Remove
-            </button>
-          </span>
-        ))}
-      </div>
-      <br />
-      <br />
-      <Editor
-        editorState={editorState}
-        onEditorStateChange={setEditorState}
-        wrapperClassName={styles.wrapperClass}
-        editorClassName={styles.editorClass}
-        onContentStateChange={() => {
-          //get current value = rich text editor instance
-          const contentState = editorState.getCurrentContent();
-          //convert into JSON = saving all styles with text => converting to HTML with styles
-          const contentConvertToHtml = draftToHtml(convertToRaw(contentState));
+              required
+            />
+          </div>
+          <br />
+          <br />
+          <div className="preference">
+            <label htmlFor="title">Enter post title:</label>
+            <br />
+            <br />
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="Title should be here..."
+              value={formValues.title}
+              onChange={(e) => {
+                setFormValues({ ...formValues, title: e.target.value });
+              }}
+              required
+            />
+          </div>
+          <br />
+          <br />
+          <div className="preference">
+            <label htmlFor="tag">Enter post tag:</label>
+            <br />
+            <br />
+            <input
+              type="text"
+              name="tag"
+              id="tag"
+              placeholder="Example: Books"
+              value={tagName}
+              onChange={(e) => {
+                setTagName(e.target.value);
+              }}
+            />
+            <button onClick={handleAddTag}>Add Tag</button>
+          </div>
+          <br />
+          <div className="tags-display">
+            {formValues.tags.map((tag, index) => (
+              <span key={index} className="tag">
+                {tag}
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    removeTag(index);
+                  }}
+                >
+                  Remove
+                </button>
+              </span>
+            ))}
+          </div>
+          <br />
+          <br />
+          <Editor
+            editorState={editorState}
+            onEditorStateChange={setEditorState}
+            wrapperClassName={styles.wrapperClass}
+            editorClassName={styles.editorClass}
+            onContentStateChange={() => {
+              //get current value = rich text editor instance
+              const contentState = editorState.getCurrentContent();
+              //convert into JSON = saving all styles with text => converting to HTML with styles
+              const contentConvertToHtml = draftToHtml(
+                convertToRaw(contentState)
+              );
 
-          setFormValues({
-            ...formValues,
-            content: contentConvertToHtml,
-          });
-        }}
-        toolbarClassName={styles.toolbarClass}
-      />
-      <br />
-      <button className="btn btn-success">Submit</button>
-    </form>
+              setFormValues({
+                ...formValues,
+                content: contentConvertToHtml,
+              });
+            }}
+            toolbarClassName={styles.toolbarClass}
+          />
+          <br />
+          <button className="btn btn-success">Submit</button>
+        </form>
+      )}
+    </>
   );
 };
 

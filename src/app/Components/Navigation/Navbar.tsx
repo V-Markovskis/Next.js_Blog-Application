@@ -5,14 +5,17 @@ import { useSession } from "next-auth/react";
 
 const Navbar = () => {
   const { data: session } = useSession();
-
   return (
     <nav>
       <Link href="/">Home</Link>
       &nbsp;
       <Link href={"/posts"}>Posts</Link>
-      &nbsp;
-      <Link href={"/new-post"}>Add post</Link>
+      {session?.user && (
+        <>
+          &nbsp;
+          <Link href={"/new-post"}>Add post</Link>
+        </>
+      )}
       {session?.user ? (
         <>
           &nbsp;

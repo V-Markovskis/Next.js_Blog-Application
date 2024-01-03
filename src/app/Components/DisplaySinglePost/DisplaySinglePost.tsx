@@ -9,6 +9,7 @@ import styles from "./DisplaySinglePost.module.css";
 import { deletePost, updatePost } from "@/requestsToAPI/posts";
 import { useRouter } from "next/navigation";
 import NewPost from "@/app/Components/NewPost";
+import { useSession } from "next-auth/react";
 
 type DisplaySinglePostProps = {
   post: Posts;
@@ -16,7 +17,7 @@ type DisplaySinglePostProps = {
 
 const DisplaySinglePost = ({ post }: DisplaySinglePostProps) => {
   const router = useRouter();
-
+  const { data: session } = useSession();
   const [isEditing, setIsEditing] = useState(false);
 
   return (
@@ -25,26 +26,30 @@ const DisplaySinglePost = ({ post }: DisplaySinglePostProps) => {
         <nav>
           <h2>Post Details</h2>
         </nav>
-        <div className={styles.buttons_container}>
-          <button
-            className={styles.buttons}
-            onClick={() => {
-              setIsEditing(!isEditing);
-            }}
-          >
-            {isEditing ? "Cancel Edit" : "Edit"}
-          </button>
-          <button
-            onClick={async () => {
-              await deletePost(post.id);
-              router.push("/posts");
-              router.refresh();
-            }}
-            className={styles.buttons}
-          >
-            Delete
-          </button>
-        </div>
+        {session?.user && (
+          <>
+            <div className={styles.buttons_container}>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  setIsEditing(!isEditing);
+                }}
+              >
+                {isEditing ? "Cancel Edit" : "Edit"}
+              </button>
+              <button
+                onClick={async () => {
+                  await deletePost(post.id);
+                  router.push("/posts");
+                  router.refresh();
+                }}
+                className={styles.buttons}
+              >
+                Delete
+              </button>
+            </div>
+          </>
+        )}
         {isEditing ? (
           <NewPost isEditing setIsEditing={setIsEditing} initialValue={post} />
         ) : (
