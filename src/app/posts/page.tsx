@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { Posts } from "@/app/types/postsType";
 import { Tag } from "@/app/types/tagType";
-import { getPosts } from "@/requestsToAPI/getPosts";
+import { getPosts } from "@/requestsToAPI/posts";
 
 export default async function TicketList() {
   const posts = (await getPosts()) as Posts[];

@@ -152,10 +152,6 @@ const NewPostCreation = () => {
           const contentState = editorState.getCurrentContent();
           //convert into JSON = saving all styles with text => converting to HTML with styles
           const contentConvertToHtml = draftToHtml(convertToRaw(contentState));
-          //sanitize the HTML content
-          const sanitizedHtml = DOMPurify.sanitize(
-            JSON.stringify(contentConvertToHtml)
-          );
 
           setFormValues({
             ...formValues,

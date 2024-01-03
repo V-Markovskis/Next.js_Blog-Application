@@ -2,11 +2,12 @@
 import React from "react";
 import { Tag } from "@/app/types/tagType";
 import Image from "next/image";
-import styles from "@/app/posts/page.module.css";
-import CommentsForPost, {
-  Comments,
-} from "@/app/Components/Comments/CommentsForPost";
+import pageStyles from "@/app/posts/page.module.css";
+import CommentsForPost from "@/app/Components/Comments/CommentsForPost";
 import { Posts } from "@/app/types/postsType";
+import styles from "./DisplaySinglePost.module.css";
+import { deletePost } from "@/requestsToAPI/posts";
+import { useRouter } from "next/navigation";
 
 type DisplaySinglePostProps = {
   post: Posts;
@@ -16,6 +17,8 @@ const DisplaySinglePost = ({ post }: DisplaySinglePostProps) => {
   function createMarkup() {
     return { __html: post.content };
   }
+  const router = useRouter();
+
   return (
     <div>
       <main>
@@ -29,11 +32,26 @@ const DisplaySinglePost = ({ post }: DisplaySinglePostProps) => {
               <div key={tag.id}>{tag.tag_name}</div>
             ))}
           </small>
+          <div className={styles.buttons_container}>
+            <button className={styles.buttons} disabled>
+              Edit
+            </button>
+            <button
+              onClick={async () => {
+                await deletePost(post.id);
+                router.push("/posts");
+                router.refresh();
+              }}
+              className={styles.buttons}
+            >
+              Delete
+            </button>
+          </div>
           <Image
             src={post.image_url}
             width={200}
             height={200}
-            className={styles.image}
+            className={pageStyles.image}
             priority={false}
             alt="post picture"
           />

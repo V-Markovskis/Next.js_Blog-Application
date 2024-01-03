@@ -31,6 +31,33 @@ export async function GET() {
   }
 }
 
+export async function DELETE(request: Request) {
+  try {
+    const { postId }: { postId: number } = await request.json();
+
+    const postTagsDeleteResult = (await executeQuery({
+      query: "DELETE FROM post_tags WHERE post_id = ?",
+      values: [postId],
+    })) as Posts[];
+
+    const postDeleteResult = (await executeQuery({
+      query: "DELETE FROM posts WHERE id = ?",
+      values: [postId],
+    })) as Posts[];
+
+    const postCommentsDeleteResult = (await executeQuery({
+      query: "DELETE FROM comments WHERE post_id = ?",
+      values: [postId],
+    })) as Posts[];
+
+    // Successfully retrieved posts
+    return Response.json({ message: "Post deleted successfully" });
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return { status: 500, json: { message: "Internal server error" } };
+  }
+}
+
 // type extractIndexType = {
 //   id: number;
 // };
