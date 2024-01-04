@@ -7,6 +7,7 @@ import { Posts } from "@/app/types/postsType";
 import styles from "./DisplayComment.module.css";
 import { useRouter } from "next/navigation";
 import { deleteComment } from "@/requestsToAPI/comments";
+import { useSession } from "next-auth/react";
 
 type CommentsToDisplayProps = {
   post: Posts;
@@ -49,6 +50,7 @@ const ShowComment = ({
   setEditedComment,
   setIsEditing,
 }: ShowCommentProps) => {
+  const { data: session } = useSession();
   const router = useRouter();
 
   return (
@@ -61,28 +63,30 @@ const ShowComment = ({
         <span>{comment.comment_context}</span>
       </div>
       <br />
-      <div className={styles.comment_buttons_container}>
-        <button
-          className="btn btn-warning"
-          onClick={(e) => {
-            e.preventDefault();
-            setIsEditing(!isEditing);
-            setEditedComment(comment);
-          }}
-        >
-          {isEditing ? "Cancel Edit" : "Edit"}
-        </button>
-        <button
-          className="btn btn-danger"
-          onClick={(e) => {
-            e.preventDefault();
-            deleteComment(comment.id as number);
-            router.refresh();
-          }}
-        >
-          Delete
-        </button>
-      </div>
+      {session?.user && (
+        <div className={styles.comment_buttons_container}>
+          <button
+            className="btn btn-warning"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsEditing(!isEditing);
+              setEditedComment(comment);
+            }}
+          >
+            {isEditing ? "Cancel Edit" : "Edit"}
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={(e) => {
+              e.preventDefault();
+              deleteComment(comment.id as number);
+              router.refresh();
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      )}
     </div>
   );
 };
