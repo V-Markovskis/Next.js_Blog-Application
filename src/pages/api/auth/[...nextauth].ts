@@ -7,8 +7,8 @@ export const authOptions = {
   // https://next-auth.js.org/configuration/providers/oauth
   providers: [
     GithubProvider({
-      clientId: "d356e568ae6315ba4d51"!,
-      clientSecret: "416aba589ff56e4e2b60246b23a472b99877fbe2"!,
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
   ],
   callbacks: {
