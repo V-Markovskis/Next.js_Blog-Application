@@ -1,4 +1,5 @@
 .globalContainer {
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     gap: 15px
@@ -10,11 +11,43 @@
     border: 1px solid black;
     border-radius: 10px;
     padding: 20px;
-    max-width: 400px;
+    max-width: 300px;
+    gap: 10px
+}
+
+.postContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px
+}
+
+.imageTitleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 10px
 }
 
 .image {
     object-fit: cover;
     border-radius: 10px;
+}
+
+.tagContainer {
+    display: flex;
+    gap: 10px
+}
+
+.tag {
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 8px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.titleContainer {
+    overflow: hidden;
+    word-wrap: break-word;
 }
