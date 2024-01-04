@@ -1,7 +1,10 @@
 .comment_container {
     margin-top: 15px;
-    background: #363636;
-    padding: 20px;
+    background-color: #688d47;
+    padding: 15px;
+    max-width: 300px;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 .comment_content_container {
     margin-top: 10px;
@@ -12,5 +15,4 @@
     flex-direction: row;
     justify-content: space-between;
     width: 150px;
-    margin-left: 20px;
 }

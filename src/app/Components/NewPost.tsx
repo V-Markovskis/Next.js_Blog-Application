@@ -98,7 +98,6 @@ const NewPost = ({ isEditing, initialValue, setIsEditing }: NewPost) => {
           className={styles.container}
           onSubmit={async (e) => {
             e.preventDefault();
-            console.log("formValues", formValues);
 
             if (isEditorEmpty()) {
               alert("Enter content for post");
@@ -119,99 +118,109 @@ const NewPost = ({ isEditing, initialValue, setIsEditing }: NewPost) => {
             setEditorState(() => EditorState.createEmpty());
           }}
         >
-          <header className={styles.header}>New Post Creation</header>
-          <div className="preference">
-            <label htmlFor="imageUrl">Enter image URL:</label>
+          <div className={styles.formContainer}>
+            <header className={styles.header}>New Post Creation</header>
+            <div className="preference">
+              <label htmlFor="imageUrl">Enter image URL:</label>
+              <br />
+              <br />
+              <input
+                type="text"
+                name="imageUrl"
+                id="imageUrl"
+                placeholder="https..."
+                value={formValues.image_url}
+                onChange={(e) => {
+                  setFormValues({ ...formValues, image_url: e.target.value });
+                }}
+                required
+              />
+            </div>
             <br />
             <br />
-            <input
-              type="text"
-              name="imageUrl"
-              id="imageUrl"
-              placeholder="https..."
-              value={formValues.image_url}
-              onChange={(e) => {
-                setFormValues({ ...formValues, image_url: e.target.value });
-              }}
-              required
-            />
-          </div>
-          <br />
-          <br />
-          <div className="preference">
-            <label htmlFor="title">Enter post title:</label>
+            <div className="preference">
+              <label htmlFor="title">Enter post title:</label>
+              <br />
+              <br />
+              <input
+                type="text"
+                name="title"
+                id="title"
+                placeholder="Title should be here..."
+                value={formValues.title}
+                onChange={(e) => {
+                  setFormValues({ ...formValues, title: e.target.value });
+                }}
+                required
+              />
+            </div>
             <br />
             <br />
-            <input
-              type="text"
-              name="title"
-              id="title"
-              placeholder="Title should be here..."
-              value={formValues.title}
-              onChange={(e) => {
-                setFormValues({ ...formValues, title: e.target.value });
-              }}
-              required
-            />
-          </div>
-          <br />
-          <br />
-          <div className="preference">
-            <label htmlFor="tag">Enter post tag:</label>
+            <div className="preference">
+              <label htmlFor="tag">Enter post tag:</label>
+              <br />
+              <br />
+              <input
+                type="text"
+                name="tag"
+                id="tag"
+                placeholder="Example: Books"
+                value={tagName}
+                onChange={(e) => {
+                  setTagName(e.target.value);
+                }}
+              />
+              &nbsp;
+              <button onClick={handleAddTag} className="btn btn-secondary">
+                Add Tag
+              </button>
+            </div>
+            <br />
+            <div className={styles.tagContainer}>
+              {formValues.tags.map((tag, index) => (
+                <>
+                  <span key={index} className="tag">
+                    {tag}
+                  </span>
+                  <button
+                    className="btn btn-warning"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      removeTag(index);
+                    }}
+                  >
+                    Remove
+                  </button>
+                </>
+              ))}
+            </div>
             <br />
             <br />
-            <input
-              type="text"
-              name="tag"
-              id="tag"
-              placeholder="Example: Books"
-              value={tagName}
-              onChange={(e) => {
-                setTagName(e.target.value);
-              }}
-            />
-            <button onClick={handleAddTag}>Add Tag</button>
-          </div>
-          <br />
-          <div className="tags-display">
-            {formValues.tags.map((tag, index) => (
-              <span key={index} className="tag">
-                {tag}
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    removeTag(index);
-                  }}
-                >
-                  Remove
-                </button>
-              </span>
-            ))}
-          </div>
-          <br />
-          <br />
-          <Editor
-            editorState={editorState}
-            onEditorStateChange={setEditorState}
-            wrapperClassName={styles.wrapperClass}
-            editorClassName={styles.editorClass}
-            onContentStateChange={() => {
-              //get current value = rich text editor instance
-              const contentState = editorState.getCurrentContent();
-              //convert into JSON = saving all styles with text => converting to HTML with styles
-              const contentConvertToHtml = draftToHtml(
-                convertToRaw(contentState)
-              );
+            <Editor
+              editorState={editorState}
+              onEditorStateChange={setEditorState}
+              wrapperClassName={styles.wrapperClass}
+              editorClassName={styles.editorClass}
+              onContentStateChange={() => {
+                //get current value = rich text editor instance
+                const contentState = editorState.getCurrentContent();
+                //convert into JSON = saving all styles with text => converting to HTML with styles
+                const contentConvertToHtml = draftToHtml(
+                  convertToRaw(contentState)
+                );
 
-              setFormValues({
-                ...formValues,
-                content: contentConvertToHtml,
-              });
-            }}
-            toolbarClassName={styles.toolbarClass}
-          />
-          <br />
-          <button className="btn btn-success">Submit</button>
+                setFormValues({
+                  ...formValues,
+                  content: contentConvertToHtml,
+                });
+              }}
+              toolbarClassName={styles.toolbarClass}
+            />
+            <br />
+            <div className={styles.buttonContainer}>
+              <button className="btn btn-success">Submit</button>
+            </div>
+          </div>
         </form>
       )}
     </>

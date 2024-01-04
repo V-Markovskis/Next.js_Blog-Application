@@ -21,21 +21,21 @@ const DisplaySinglePost = ({ post }: DisplaySinglePostProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div>
+    <div className={styles.postHeader}>
       <main>
-        <nav>
+        <div className={styles.postDetailsContainer}>
           <h2>Post Details</h2>
-        </nav>
+        </div>
         {session?.user && (
           <>
             <div className={styles.buttons_container}>
               <button
-                className={styles.buttons}
+                className="btn btn-warning"
                 onClick={() => {
                   setIsEditing(!isEditing);
                 }}
               >
-                {isEditing ? "Cancel Edit" : "Edit"}
+                {isEditing ? "Cancel Edit" : "Edit Post"}
               </button>
               <button
                 onClick={async () => {
@@ -43,9 +43,9 @@ const DisplaySinglePost = ({ post }: DisplaySinglePostProps) => {
                   router.push("/posts");
                   router.refresh();
                 }}
-                className={styles.buttons}
+                className="btn btn-danger"
               >
-                Delete
+                Delete Post
               </button>
             </div>
           </>
@@ -71,11 +71,13 @@ const PostContent = ({ post }: PostContentProps) => {
 
   return (
     <>
-      <div>
+      <div className={styles.singlePostContainer}>
         <h3>{post.title}</h3>
         <small>
           {post.tags.map((tag: Tag) => (
-            <div key={tag.id}>{tag.tag_name}</div>
+            <div key={tag.id} className={styles.tags}>
+              {tag.tag_name}
+            </div>
           ))}
         </small>
         <Image
@@ -86,7 +88,10 @@ const PostContent = ({ post }: PostContentProps) => {
           priority={false}
           alt="post picture"
         />
-        <div dangerouslySetInnerHTML={createMarkup()} />
+        <div
+          className={styles.postContent}
+          dangerouslySetInnerHTML={createMarkup()}
+        />
       </div>
       <CommentsForPost post={post} isEditing={false} />
     </>

@@ -1,4 +1,12 @@
 .comments_wrapper {
     margin-top: 20px;
-    border: 1px solid white;
+}
+
+.commentsFormContainer {
+    background-color: darkolivegreen;
+    margin-top: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    max-width: 300px;
+    padding: 10px
 }

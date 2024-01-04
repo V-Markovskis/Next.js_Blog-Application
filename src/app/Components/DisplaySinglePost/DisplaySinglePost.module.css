@@ -1,11 +1,39 @@
 .buttons_container {
     display: flex;
     flex-direction: row;
-    width: 250px;
-    justify-content: space-between;
-    padding: 20px;
+    justify-content: center;
+    gap: 100px;
 }
 
 .buttons {
     width: 100px;
 }
+
+.postDetailsContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.singlePostContainer {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px
+}
+
+.postHeader {
+    margin-top: 50px;
+}
+
+.tags {
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.postContent {
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+

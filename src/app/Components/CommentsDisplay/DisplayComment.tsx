@@ -63,6 +63,7 @@ const ShowComment = ({
       <br />
       <div className={styles.comment_buttons_container}>
         <button
+          className="btn btn-warning"
           onClick={(e) => {
             e.preventDefault();
             setIsEditing(!isEditing);
@@ -72,6 +73,7 @@ const ShowComment = ({
           {isEditing ? "Cancel Edit" : "Edit"}
         </button>
         <button
+          className="btn btn-danger"
           onClick={(e) => {
             e.preventDefault();
             deleteComment(comment.id as number);

@@ -60,40 +60,44 @@ const CommentsForPost = ({
           router.refresh();
         }}
       >
-        <label htmlFor="author">Author:</label>
-        <br />
-        <br />
-        <input
-          type="text"
-          id="author"
-          placeholder="Enter your name"
-          value={comment.author_name}
-          disabled={isEditing}
-          onChange={(e) => {
-            setComment({ ...comment, author_name: e.target.value });
-          }}
-        />
-        <br />
-        <br />
-        <label htmlFor="comment">Comment</label>
-        <br />
-        <br />
-        <input
-          type="text"
-          id="comment"
-          placeholder="Example: Like it!"
-          value={comment.comment_context}
-          onChange={(e) => {
-            setComment({
-              ...comment,
-              comment_context: e.target.value,
-              post_id: post.id,
-            });
-          }}
-        />
-        <br />
-        <br />
-        <button>{isEditing ? "Save" : "Submit"}</button>
+        <div className={styles.commentsFormContainer}>
+          <label htmlFor="author">Author:</label>
+          <br />
+          <br />
+          <input
+            type="text"
+            id="author"
+            placeholder="Enter your name"
+            value={comment.author_name}
+            disabled={isEditing}
+            onChange={(e) => {
+              setComment({ ...comment, author_name: e.target.value });
+            }}
+          />
+          <br />
+          <br />
+          <label htmlFor="comment">Comment</label>
+          <br />
+          <br />
+          <input
+            type="text"
+            id="comment"
+            placeholder="Example: Like it!"
+            value={comment.comment_context}
+            onChange={(e) => {
+              setComment({
+                ...comment,
+                comment_context: e.target.value,
+                post_id: post.id,
+              });
+            }}
+          />
+          <br />
+          <br />
+          <button className="btn btn-success">
+            {isEditing ? "Save" : "Submit"}
+          </button>
+        </div>
       </form>
       <div className={styles.comments_wrapper}>
         {post.comments &&
