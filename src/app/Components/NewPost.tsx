@@ -30,6 +30,7 @@ const Editor = dynamic(
 );
 
 export type valuesToPost = {
+  id?: number;
   image_url: string;
   title: string;
   tags: string[];

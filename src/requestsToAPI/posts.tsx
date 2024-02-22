@@ -34,7 +34,7 @@ export async function deletePost(postId: number) {
 
 export async function updatePost(formValues: valuesToPost) {
   try {
-    const res = await fetch("http://localhost:3000/api/posts", {
+    const res = await fetch(`http://localhost:3000/api/posts`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formValues),

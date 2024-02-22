@@ -1,7 +1,6 @@
 import { valuesToPost } from "@/app/Components/NewPost";
 
 export async function postContent(formValues: valuesToPost) {
-  console.log("formValues in postContent start", formValues);
   try {
     const res = await fetch("http://localhost:3000/api/new-post", {
       method: "POST",

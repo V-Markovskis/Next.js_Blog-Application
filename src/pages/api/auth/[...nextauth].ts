@@ -3,7 +3,6 @@ import GithubProvider from "next-auth/providers/github";
 import { getUser } from "@/requestsToAPI/user";
 
 export const authOptions = {
-  // Configure one or more authentication providers
   // https://next-auth.js.org/configuration/providers/oauth
   providers: [
     GithubProvider({

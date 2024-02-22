@@ -44,8 +44,9 @@ export async function PUT(request: Request) {
   const { id, image_url, title, content, tags } = await request.json();
   try {
     const postUpdateResult = (await executeQuery({
-      query: "UPDATE posts SET image_url = ?, title = ?, content = ?",
-      values: [image_url, title, content],
+      query:
+        "UPDATE posts SET image_url = ?, title = ?, content = ? WHERE id = ?",
+      values: [image_url, title, content, id],
     })) as Posts[];
 
     const tagsDeleteResult = (await executeQuery({

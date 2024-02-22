@@ -9,7 +9,5 @@ export default async function PostDetails({
 }) {
   const post = await getPost(params.id);
 
-  console.log("post object:", post);
-
   return <DisplaySinglePost post={post} />;
 }
